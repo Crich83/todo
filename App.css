@@ -13,18 +13,20 @@
   background: #a52626;
   border-radius: 20px;
   padding: 10px;
-  max-width: 400px;
+  max-width: 500px;
 }
 
 .todo {
   background: #fff;
   box-shadow: 1px 1px 1px rgba(23, 32, 163, 0.15);
-  padding: 3px 10px;
-  font-size: 24px;
-  margin-bottom: 6px;
-  border-radius: 3px;
+  padding: 6px 15px;
+  font-size: 20px;
+  margin-bottom: 8px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   
 }
+
+

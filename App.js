@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import "./App.css";
 
+
 function Todo({ todo, index, completeTodo, removeTodo }) {
   return (
     <div
       className="todo"
-      style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
+      style={{
+        textDecoration: todo.isCompleted ? "line-through" : "",
+        color: todo.isCompleted ? "red" : "",
+      }}
     >
       {todo.text}
 
       <div>
-        <button onClick={() => completeTodo(index)}>Complete</button>
+        <button onClick={() => completeTodo(index)}>
+          {todo.isCompleted ? "Incomplete?" : "Complete?"}
+        </button>
         <button onClick={() => removeTodo(index)}>x</button>
       </div>
     </div>
@@ -20,7 +26,7 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
 function TodoForm({ addTodo }) {
   const [value, setValue] = useState("");
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!value) return;
     addTodo(value);
@@ -30,11 +36,11 @@ function TodoForm({ addTodo }) {
   return (
     <form onSubmit={handleSubmit}>
       <input
-        type="text" 
+        type="text"
         placeholder="Enter text here."
         className="input"
         value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={(e) => setValue(e.target.value)}
       />
     </form>
   );
@@ -43,31 +49,31 @@ function TodoForm({ addTodo }) {
 function App() {
   const [todos, setTodos] = useState([
     {
-      text: "Dentist Appointment",
-      isCompleted: false
+      text: "Interview",
+      isCompleted: false,
     },
     {
-      text: "Wash Clothes",
-      isCompleted: false
+      text: "Shopping",
+      isCompleted: false,
     },
     {
-      text: "Have a Garage sale",
-      isCompleted: false
-    }
+      text: "Garage Sale",
+      isCompleted: false,
+    },
   ]);
 
-  const addTodo = text => {
+  const addTodo = (text) => {
     const newTodos = [...todos, { text }];
     setTodos(newTodos);
   };
 
-  const completeTodo = index => {
+  const completeTodo = (index) => {
     const newTodos = [...todos];
-    newTodos[index].isCompleted = true;
+    newTodos[index].isCompleted = !newTodos[index].isCompleted;
     setTodos(newTodos);
   };
 
-  const removeTodo = index => {
+  const removeTodo = (index) => {
     const newTodos = [...todos];
     newTodos.splice(index, 1);
     setTodos(newTodos);
@@ -92,5 +98,3 @@ function App() {
 }
 
 export default App;
-
-//reference: https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks
